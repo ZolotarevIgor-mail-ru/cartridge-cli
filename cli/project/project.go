@@ -15,9 +15,8 @@ type ProjectCtx struct {
 	Path           string
 	Template       string
 
-	Instances  []string
-	Daemonize  bool
-	Stateboard bool
+	Instances []string
+	Daemonize bool
 
 	Verbose bool
 	Debug   bool
@@ -57,9 +56,9 @@ type ProjectCtx struct {
 	Entrypoint           string
 	StateboardEntrypoint string
 	AppDir               string
-	ConfDir              string
+	ConfPath             string
 	RunDir               string
-	WorkDir              string
+	WorkDirBase          string
 }
 
 // FillCtx fills project context
@@ -117,16 +116,16 @@ func FillCtx(projectCtx *ProjectCtx) error {
 
 	projectCtx.AppDir = filepath.Join(defaultAppsDir, projectCtx.Name)
 
-	if projectCtx.ConfDir == "" {
-		projectCtx.ConfDir = defaultConfDir
+	if projectCtx.ConfPath == "" {
+		projectCtx.ConfPath = defaultConfPath
 	}
 
 	if projectCtx.RunDir == "" {
 		projectCtx.RunDir = defaultRunDir
 	}
 
-	if projectCtx.WorkDir == "" {
-		projectCtx.WorkDir = defaultWorkDir
+	if projectCtx.WorkDirBase == "" {
+		projectCtx.WorkDirBase = defaultWorkDir
 	}
 
 	return nil
