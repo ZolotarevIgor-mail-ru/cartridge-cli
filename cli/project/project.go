@@ -15,6 +15,10 @@ type ProjectCtx struct {
 	Path           string
 	Template       string
 
+	Instances  []string
+	Daemonize  bool
+	Stateboard bool
+
 	Verbose bool
 	Debug   bool
 	Quiet   bool
@@ -76,7 +80,7 @@ func FillCtx(projectCtx *ProjectCtx) error {
 
 	if projectCtx.Name == "" {
 		if _, err := os.Stat(projectCtx.Path); err == nil {
-			projectCtx.Name, err = detectName(projectCtx.Path)
+			projectCtx.Name, err = DetectName(projectCtx.Path)
 			if err != nil {
 				return fmt.Errorf(
 					"Failed to detect application name: %s. Please pass it explicitly via --name ",
@@ -128,7 +132,7 @@ func FillCtx(projectCtx *ProjectCtx) error {
 	return nil
 }
 
-func detectName(path string) (string, error) {
+func DetectName(path string) (string, error) {
 	var err error
 
 	if _, err := os.Stat(path); os.IsNotExist(err) {
