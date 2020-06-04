@@ -58,7 +58,7 @@ type ProjectCtx struct {
 	AppDir               string
 	ConfPath             string
 	RunDir               string
-	WorkDirBase          string
+	DataDir              string
 }
 
 // FillCtx fills project context
@@ -124,8 +124,8 @@ func FillCtx(projectCtx *ProjectCtx) error {
 		projectCtx.RunDir = defaultRunDir
 	}
 
-	if projectCtx.WorkDirBase == "" {
-		projectCtx.WorkDirBase = defaultWorkDir
+	if projectCtx.DataDir == "" {
+		projectCtx.DataDir = defaultDataDir
 	}
 
 	return nil
