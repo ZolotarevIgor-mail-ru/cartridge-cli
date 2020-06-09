@@ -51,7 +51,6 @@ func packDocker(projectCtx *project.ProjectCtx) error {
 	log.Debugf("Create runtime image Dockerfile")
 
 	runtimeImageDockerfileName := fmt.Sprintf("Dockerfile.%s", projectCtx.PackID)
-	fmt.Printf("projectCtx.From: %s\n", projectCtx.From)
 	dockerfileTemplate, err := project.GetRuntimeImageDockerfileTemplate(projectCtx)
 
 	if err != nil {
